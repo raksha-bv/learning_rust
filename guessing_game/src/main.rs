@@ -4,6 +4,7 @@ use rand::Rng;
 
 fn main() {
     println!("Guess the number!");
+    let mut num_guess = 0;
 
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
@@ -18,6 +19,11 @@ fn main() {
 
         let guess: u32 = guess.trim().parse().expect("Please type a number!");
 
+        num_guess += 1;
+        if num_guess > 5 {
+            println!("You lost! The number was {}.", secret_number);
+            break;
+        }
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
