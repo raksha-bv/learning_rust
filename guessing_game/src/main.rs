@@ -20,10 +20,7 @@ fn main() {
         let guess: u32 = guess.trim().parse().expect("Please type a number!");
 
         num_guess += 1;
-        if num_guess > 5 {
-            println!("You lost! The number was {}.", secret_number);
-            break;
-        }
+
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
@@ -31,6 +28,10 @@ fn main() {
                 println!("You win!");
                 break;
             }
+        }
+        if num_guess > 5 {
+            println!("You lost! The number was {}.", secret_number);
+            break;
         }
     }
 }
